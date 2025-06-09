@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace Insights - Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Modern Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=General+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide-react@0.292.0/dist/umd/lucide.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', 'Space Grotesk', 'Inter', 'General Sans', Arial, sans-serif !important;
+            background: 
+                linear-gradient(135deg, rgba(216,171,78,0.12) 0%, rgba(193,67,46,0.10) 100%), /* gold to rusted red */
+                linear-gradient(120deg, #1d1e22 0%, #000000 100%);
+            color: #F5F5F4;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(216,171,78,0.18) 0, transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(225,179,130,0.13) 0, transparent 60%),
+                radial-gradient(circle at 70% 20%, rgba(206,158,98,0.10) 0, transparent 60%),
+                url('https://www.transparenttextures.com/patterns/noise.png'); /* subtle noise pattern */
+            opacity: 0.95;
+            mix-blend-mode: lighten;
+        }
+        .section, .welcome-section, .download-section {
+            background: transparent !important;
+        }
+        .card, .download-card {
+            background: rgba(30, 30, 30, 0.85) !important;
+            border: 1px solid rgba(216,171,78,0.13);
+            box-shadow: 0 8px 32px 0 rgba(216,171,78,0.10);
+        }
+        header, footer {
+            background: linear-gradient(90deg, #1d1e22 80%, #000000 100%) !important;
+            border-bottom: 1px solid rgba(216,171,78,0.10);
+        }
+        .btn-primary, .download-button {
+            background: linear-gradient(90deg, #d8ab4e 0%, #ce9e62 100%) !important;
+            color: #1d1e22 !important;
+            border: none;
+            box-shadow: 0 4px 16px 0 rgba(216,171,78,0.13);
+        }
+        .btn-primary:hover, .download-button:hover {
+            background: linear-gradient(90deg, #ce9e62 0%, #d8ab4e 100%) !important;
+            color: #fff !important;
+        }
+        .gradient-text, .section-title, .welcome-title, .hero-subtitle-attractive {
+            background: linear-gradient(90deg, #d8ab4e 0%, #e1b382 50%, #ce9e62 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .section {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #8B7355, #D4C4A8, #E8DCC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            animation: gradient 8s ease infinite;
+            background-size: 300% 300%;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #8B7355, #6F5B3E);
+            color: #F5F5F4;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid rgba(245, 245, 244, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.3);
+            background: linear-gradient(135deg, #6F5B3E, #8B7355);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .card {
+            background: rgba(245, 245, 244, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            border: 1px solid rgba(245, 245, 244, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            background: rgba(245, 245, 244, 0.08);
+        }
+        /* Hero section enhancements */
+        #hero {
+            position: relative;
+            overflow: hidden;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(139, 115, 85, 0.1), transparent 60%);
+            pointer-events: none;
+        }
+        /* Enhanced animations */
+        .fade-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
+                      transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity, transform;
+        }
+        .fade-section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Header enhancements */
+        header {
+            background: linear-gradient(to right, rgba(64, 64, 64, 0.95), rgba(82, 82, 82, 0.95));
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .nav-brand {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+        nav a {
+            color: #d8ab4e !important;
+            position: relative;
+            padding: 0.5rem 0;
+            margin: 0 1rem;
+            font-weight: 600;
+            transition: color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+            font-size: 1.08rem;
+            text-shadow: 0 1px 8px rgba(216,171,78,0.12);
+        }
+        nav a:hover {
+            color: #fff !important;
+            text-shadow: 0 0 8px #d8ab4e, 0 2px 16px #d8ab4e44;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #d8ab4e, transparent);
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        /* Mobile menu enhancements */
+        #mobile-menu {
+            background: linear-gradient(to bottom, rgba(64, 64, 64, 0.98), rgba(82, 82, 82, 0.98));
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #mobile-menu a {
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        #mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-left: 3px solid #e0e0e0;
+            padding-left: calc(1.5rem - 3px);
+        }
+        .menu-icon {
+            color: #e0e0e0;
+            transition: color 0.3s ease;
+        }
+        .menu-icon:hover {
+            color: #ffffff;
+        }
+        /* Social icons hover effect */
+        .social-icon {
+            color: #D4C4A8;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: translateY(-3px);
+            color: #F5F5F4 !important;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(44, 24, 16, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #8B7355, #6F5B3E);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #6F5B3E, #8B7355);
+        }
+        /* Loading Spinner */
+        .loader {
+            border: 4px solid #334155; /* slate-700 */
+            border-top: 4px solid #06b6d4; /* cyan-500 */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto; /* Center spinner */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Message Box Styles */
+        .message-box {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        .message-box-success {
+            background-color: #10b98130; /* green-500 with opacity */
+            color: #a7f3d0; /* green-200 */
+            border: 1px solid #10b981; /* green-500 */
+        }
+        .message-box-error {
+            background-color: #ef444430; /* red-500 with opacity */
+            color: #fecaca; /* red-200 */
+            border: 1px solid #ef4444; /* red-500 */
+        }
+        .no-js .fade-section {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        /* Text colors */
+        .text-slate-400 {
+            color: #D4C4A8;
+        }
+        .text-slate-300 {
+            color: #E8DCC4;
+        }
+        .text-slate-100 {
+            color: #F5F5F4;
+        }
+        /* Footer styling */
+        footer {
+            background: rgba(44, 24, 16, 0.8);
+            border-top: 1px solid rgba(245, 245, 244, 0.1);
+        }
+        footer p {
+            color: #D4C4A8;
+        }
+        /* Add these new styles */
+        .welcome-section {
+            background: linear-gradient(45deg, rgba(139, 115, 85, 0.15), rgba(212, 196, 168, 0.1));
+            position: relative;
+            isolation: isolate;
+        }
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(232, 220, 196, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 115, 85, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        .welcome-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B7355' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            z-index: -1;
+        }
+        .welcome-title {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .welcome-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8B7355, transparent);
+        }
+        /* Update download section styles to match beige and brown theme */
+        .download-section {
+            background: linear-gradient(135deg, rgba(139, 115, 85, 0.1), rgba(212, 196, 168, 0.1));
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+        }
+        .download-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(232, 220, 196, 0.1) 0%, transparent 50%);
+            border-radius: 1rem;
+            z-index: -1;
+        }
+        .download-card {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(139, 115, 85, 0.05));
+            border: 1px solid rgba(232, 220, 196, 0.2);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 115, 85, 0.2);
+            border-color: rgba(232, 220, 196, 0.3);
+        }
+        .download-button {
+            background: linear-gradient(135deg, #8B7355, #6F5B3E);
+            color: #F5F5F4;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid rgba(232, 220, 196, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .download-button:hover {
+            background: linear-gradient(135deg, #6F5B3E, #8B7355);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.3);
+            border-color: rgba(232, 220, 196, 0.3);
+        }
+        .download-button span {
+            font-size: 1.25rem;
+            color: #E8DCC4;
+        }
+        .section-title {
+            background: linear-gradient(135deg, #E8DCC4, #D4C4A8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8B7355, transparent);
+        }
+        .section-description {
+            color: #D4C4A8;
+        }
+        /* Add logo styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-image {
+            height: 50px; /* Adjust based on your logo size */
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        .logo-container:hover .logo-image {
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            .logo-image {
+                height: 40px; /* Slightly smaller on mobile */
+            }
+        }
+        /* Hero entrance animation */
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-hero-fade-in {
+            opacity: 0;
+            animation: heroFadeIn 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+        }
+        /* Rotating subtitle fade */
+        .rotating-fade {
+            opacity: 0;
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .rotating-fade.visible {
+            opacity: 1;
+        }
+        /* Button interaction enhancement */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(232,220,196,0.15);
+            border-radius: 100%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s cubic-bezier(0.4,0,0.2,1), height 0.4s cubic-bezier(0.4,0,0.2,1);
+            z-index: 0;
+        }
+        .btn-primary:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        .btn-primary span, .btn-primary {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-parallax-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .hero-parallax-bg::before, .hero-parallax-bg::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.35;
+            pointer-events: none;
+        }
+        .hero-parallax-bg::before {
+            width: 400px; height: 400px;
+            background: linear-gradient(135deg, #8B7355 60%, #E8DCC4 100%);
+            left: -120px; top: -100px;
+            transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .hero-parallax-bg::after {
+            width: 300px; height: 300px;
+            background: linear-gradient(135deg, #D4C4A8 60%, #6F5B3E 100%);
+            right: -100px; bottom: -80px;
+            transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        /* Magnetic button effect */
+        .magnetic-btn {
+            transition: transform 0.18s cubic-bezier(0.4,0,0.2,1);
+            will-change: transform;
+        }
+        /* AOS fade-up override for more pop */
+        [data-aos="fade-up"] {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        [data-aos="fade-up"].aos-animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        h1, h2, h3, h4, h5, h6, .section-title, .gradient-text, .welcome-title {
+            font-family: 'Poppins', 'Space Grotesk', 'Inter', 'General Sans', Arial, sans-serif !important;
+            letter-spacing: 0.01em;
+        }
+        .animated-role {
+            display: inline-block;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #E8DCC4, #8B7355, #D4C4A8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+            min-width: 220px;
+        }
+        .animated-role.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .hero-subtitle-attractive {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #E8DCC4;
+            background: linear-gradient(90deg, #E8DCC4 60%, #8B7355 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            letter-spacing: 0.01em;
+            display: inline-block;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 16px 0 rgba(139,115,85,0.08);
+            animation: fadeInUp 1.2s cubic-bezier(0.4,0,0.2,1) both;
+        }
+        .highlight-role {
+            background: linear-gradient(90deg, #D4C4A8 40%, #8B7355 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            font-weight: 700;
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .logo-badge-bg {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(245, 230, 200, 0.85); /* light gold/off-white */
+            border-radius: 1.5rem;
+            padding: 0.35rem 1.1rem 0.35rem 0.7rem;
+            box-shadow: 0 2px 12px 0 rgba(216,171,78,0.10);
+            margin-right: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .logo-badge-bg {
+                padding: 0.18rem 0.7rem 0.18rem 0.4rem;
+            }
+        }
+    </style>
+    <!-- AOS Animate On Scroll Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body class="antialiased">
+
+    <header class="sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="logo-container">
+                <span class="logo-badge-bg">
+                    <img src="images/logo.png" alt="Grace Insights Logo" class="logo-image">
+                </span>
+            </a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#cv" class="nav-link">CV</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#event-package" class="nav-link">Event Package</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden menu-icon focus:outline-none">
+                <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block px-6 py-3">About</a>
+            <a href="#cv" class="block px-6 py-3">CV</a>
+            <a href="#portfolio" class="block px-6 py-3">Portfolio</a>
+            <a href="#event-package" class="block px-6 py-3">Event Package</a>
+            <a href="#contact" class="block px-6 py-3">Contact</a>
+        </div>
+    </header>
+
+    <section id="hero" class="min-h-screen flex items-center justify-center text-center welcome-section px-6 py-16 fade-section" style="position:relative;overflow:hidden;">
+        <!-- Parallax background shapes -->
+        <div class="hero-parallax-bg" aria-hidden="true"></div>
+        <!-- Floating particles -->
+        <canvas id="heroParticles" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;"></canvas>
+        <div class="max-w-3xl relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 animate-hero-fade-in">
+                <!-- Main headline remains empty or add your name/title here if desired -->
+            </h1>
+            <h2 class="text-6xl md:text-7xl font-extrabold mb-4 gradient-text tracking-tight welcome-title animate-hero-fade-in" style="animation-delay: 0.2s;">WELCOME TO GRACE INSIGHTS</h2>
+            <div class="hero-subtitle-attractive animate-hero-fade-in" style="animation-delay: 0.35s;">
+                <span>Video editor, <span class="highlight-role">Content creator and writer</span>, and <span class="highlight-role">Legal expert</span>.</span>
+            </div>
+            <div class="h-14 flex items-center justify-center mb-6">
+                <span id="animatedRole" class="animated-role"></span>
+            </div>
+            <div class="relative h-12 md:h-14 flex items-center justify-center mb-8">
+                <span id="rotating-subtitle" class="block text-xl md:text-2xl text-slate-400 font-medium transition-opacity duration-700 ease-in-out"></span>
+            </div>
+            <a href="#about" class="btn-primary animate-hero-fade-in magnetic-btn" style="animation-delay: 0.4s;">
+                Learn More About Me
+                <span data-lucide="arrow-down-circle"></span>
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="section container mx-auto px-6 fade-section">
+        <div class="max-w-3xl mx-auto text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold gradient-text">About Me</h2>
+        </div>
+        <div class="card max-w-4xl mx-auto">
+            <div class="md:flex md:items-center md:gap-10">
+                <div class="md:w-1/3 mb-6 md:mb-0 text-center flex-shrink-0">
+                    <img src="https://lh3.googleusercontent.com/d/1wzXZALIiN2mrBFRM4Y0V1JJVMg7FGPSw" 
+                         alt="Your Name - Placeholder Photo" 
+                         class="rounded-full mx-auto shadow-lg w-40 h-40 md:w-48 md:h-48 object-cover border-4 border-slate-700"
+                         onerror="this.onerror=null; this.src='https://placehold.co/200x200/cccccc/333333?text=Photo&font=Inter';">
+                </div>
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl font-semibold text-slate-100 mb-3">IHESIABA GRACE UZOCHUKWUMA</h3>
+                    <p class="text-slate-400 mb-4 leading-relaxed">
+                        I'm a video content editor, content writer, and law graduate.
+                        I help brands and businesses grow through visuals, creative storytelling and legal research.
+                        I am a content creator and editor at GGE Shot it.
+                        I'm also the author of video a editing starter kits for aspiring creators on selar.
+                        Let's collaborate to build your digital presence and tell your story with impact.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv" class="section fade-section download-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 section-title">My Curriculum Vitae</h2>
+            <p class="text-xl section-description mb-8 max-w-xl mx-auto">
+                My CV provides a detailed look at my professional journey, skills, and accomplishments. Download it to learn more.
+            </p>
+            <div class="download-card max-w-md mx-auto">
+                <h3 class="text-xl font-semibold text-slate-100 mb-4">Download My CV</h3>
+                <p class="text-sm text-slate-500 mb-6">
+                    <strong>Action Required:</strong>
+                </p>
+                <a href="https://drive.google.com/file/d/1YDkDk2VXmvNajqz48OHXG1nC7eBiOpDh/view?usp=sharing" id="cvLink" class="download-button">
+                    <span data-lucide="download-cloud"></span>
+                    Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section fade-section download-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 section-title">My Portfolio</h2>
+            <p class="text-xl section-description mb-8 max-w-xl mx-auto">
+                Explore my portfolio (ISO file) for a comprehensive look at my work.
+            </p>
+            <div class="download-card max-w-md mx-auto">
+                <h3 class="text-xl font-semibold text-slate-100 mb-4">Download Portfolio (ISO)</h3>
+                <p class="text-sm text-slate-500 mb-6">
+                    <strong>Action Required:</strong>
+                </p>
+                <a href="https://drive.google.com/file/d/1kL5cwaFrDZ2zG3LqZxe-tfylmllwfceE/view?usp=sharing" id="portfolioLink" class="download-button">
+                    <span data-lucide="hard-drive-download"></span>
+                    Download Portfolio ISO
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="event-package" class="section fade-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">Event Package</h2>
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto">
+                Download my comprehensive event package for all the resources and materials you need.
+            </p>
+            <div class="card max-w-md mx-auto">
+                <h3 class="text-xl font-semibold text-slate-100 mb-4"> Event Package</h3>
+                <p class="text-sm text-slate-500 mb-6">
+                    <strong>Action Required:</strong> 
+                </p>
+                <a href="https://drive.google.com/file/d/1mDXk9Vs6OMvDW4P48BVxzK9DpSxb_32k/view?usp=sharing" id="eventPackageLink" class="btn-primary w-full sm:w-auto justify-center" download>
+                    <span data-lucide="package"></span>
+                    Download Event Package
+                </a>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section fade-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 gradient-text">Get In Touch</h2>
+            <p class="text-slate-400 mb-10 max-w-xl mx-auto">
+                I'm open to discussing new projects, creative ideas, or collaborations. Feel free to reach out!
+            </p>
+            <div class="card max-w-lg mx-auto">
+                <p class="text-slate-300 mb-6">Contact me via email or connect on social media.</p>
+                <div class="flex justify-center space-x-6 mt-6">
+                    <!-- Mail -->
+                    <a href="mailto:ihesiabagrace4@gmail.com" target="_blank" rel="noopener noreferrer" title="Email">
+                        <svg width="32" height="32" fill="currentColor" class="text-slate-400 hover:text-cyan-400 transition-colors duration-300" viewBox="0 0 24 24">
+                            <path d="M2.01 4.999A2 2 0 0 1 4 3h16a2 2 0 0 1 1.99 1.999L22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-1.99-2L2.01 4.999zm2.13.872l7.32 6.104a1 1 0 0 0 1.22 0l7.32-6.104A.997.997 0 0 0 20 5H4c-.09 0-.18.012-.26.035a.997.997 0 0 0 .4.836zM20 7.238l-7.07 5.89a3 3 0 0 1-3.86 0L4 7.238V19c0 .552.447 1 1 1h14a1 1 0 0 0 1-1V7.238z"/>
+                        </svg>
+                    </a>
+                    <!-- Phone -->
+                    <a href="tel:+2349166774644" target="_blank" rel="noopener noreferrer" title="Phone">
+                        <svg width="32" height="32" fill="currentColor" class="text-slate-400 hover:text-cyan-400 transition-colors duration-300" viewBox="0 0 24 24">
+                            <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2z"/>
+                        </svg>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/graceglyph_edits?igsh=N2ZrMzhmZ3l4OGNq" target="_blank" rel="noopener noreferrer" title="Instagram">
+                        <svg width="32" height="32" viewBox="0 0 448 512" fill="currentColor" class="text-slate-400 hover:text-cyan-400 transition-colors duration-300">
+                            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9 114.9-51.3 114.9-114.9S287.7 141 224.1 141zm0 186c-39.5 0-71.5-32-71.5-71.5s32-71.5 71.5-71.5 71.5 32 71.5 71.5-32 71.5-71.5 71.5zm146.4-194.3c0 14.9-12 26.9-26.9 26.9s-26.9-12-26.9-26.9 12-26.9 26.9-26.9 26.9 12 26.9 26.9zm76.1 27.2c-1.7-35.3-9.9-66.7-36.2-92.9S388.6 1.7 353.3 0C317.7-1.7 130.3-1.7 94.7 0 59.4 1.7 28 9.9 1.7 36.2S1.7 123.4 0 158.7c-1.7 35.3-1.7 222.7 0 258.3 1.7 35.3 9.9 66.7 36.2 92.9s57.6 34.5 92.9 36.2c35.6 1.7 223 1.7 258.6 0 35.3-1.7 66.7-9.9 92.9-36.2s34.5-57.6 36.2-92.9c1.7-35.6 1.7-223 0-258.6zM398.8 388c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.3 9s-102.9 2.6-132.3-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.3s-2.6-102.9 9-132.3c7.8-19.6 22.9-34.7 42.5-42.5C121.1 9 190.9 11.6 224 11.6s102.9-2.6 132.3 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.3s2.7 102.9-9 132.3z"/>
+                        </svg>
+                    </a>
+                    <!-- TikTok -->
+                    <a href="https://tiktok.com/@yourusername" target="_blank" rel="noopener noreferrer" title="TikTok">
+                        <svg width="32" height="32" viewBox="0 0 448 512" fill="currentColor" class="text-slate-400 hover:text-cyan-400 transition-colors duration-300">
+                            <path d="M448,209.9v125.1c0,97.2-78.8,176-176,176s-176-78.8-176-176S174.8,159,272,159c16.6,0,32.7,2.1,48,6.1V0h80v209.9H448z"/>
+                        </svg>
+                    </a>
+                    <!-- YouTube -->
+                    <a href="https://youtube.com/@gginsight?feature=shared" target="_blank" rel="noopener noreferrer" title="YouTube">
+                        <svg width="32" height="32" viewBox="0 0 576 512" fill="currentColor" class="text-slate-400 hover:text-cyan-400 transition-colors duration-300">
+                            <path d="M549.655 124.083c-6.281-23.725-24.958-42.401-48.684-48.684C458.406 64 288 64 288 64s-170.406 0-212.971 11.399c-23.726 6.283-42.403 24.959-48.684 48.684C16 166.648 16 256 16 256s0 89.352 10.345 131.917c6.281 23.725 24.958 42.401 48.684 48.684C117.594 448 288 448 288 448s170.406 0 212.971-11.399c23.726-6.283 42.403-24.959 48.684-48.684C560 345.352 560 256 560 256s0-89.352-10.345-131.917zM232 336V176l142.857 80L232 336z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-slate-700 text-center py-8 px-6">
+        <p class="text-slate-500 text-sm">
+            &copy; <span id="currentYear"></span> Grace Insights. All Rights Reserved.
+        </p>
+        <p class="text-xs text-slate-600 mt-1">
+            Designed & Developed by Trojan.
+        </p>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('hidden');
+            menuIconClose.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked & smooth scroll
+        document.querySelectorAll('#mobile-menu a, header nav a[href^="#"], #hero a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                        window.scrollTo({
+                             top: offsetPosition,
+                             behavior: "smooth"
+                        });
+                    }
+                }
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuIconOpen.classList.remove('hidden');
+                    menuIconClose.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // AI Bio Generator Logic
+        const bioInputElement = document.getElementById('bioInput');
+        const generateBioButton = document.getElementById('generateBioButton');
+        const bioLoadingElement = document.getElementById('bioLoading');
+        const bioResultElement = document.getElementById('bioResult');
+
+        generateBioButton.addEventListener('click', async () => {
+            const userInput = bioInputElement.value.trim();
+            if (!userInput) {
+                displayBioResult("Please enter some key points or a description first.", "error");
+                return;
+            }
+
+            // Show loading state
+            bioLoadingElement.classList.remove('hidden');
+            generateBioButton.disabled = true;
+            bioResultElement.innerHTML = ''; // Clear previous results
+
+            // Construct the prompt for the Gemini API
+            const prompt = `Based on the following key points, generate a compelling and professional short biography (around 2-4 paragraphs). Make it suitable for an "About Me" section on a portfolio website or a professional networking profile. Ensure a positive and confident tone. Key points: "${userInput}"`;
+            
+            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = { contents: chatHistory };
+            // IMPORTANT: In a real deployment, secure your API key.
+            // For the Canvas environment, an empty string will be handled by the platform.
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Gemini API Error:', errorData);
+                    throw new Error(`API request failed with status ${response.status}: ${errorData?.error?.message || 'Unknown error'}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const generatedText = result.candidates[0].content.parts[0].text;
+                    // Sanitize and display the text (basic newline to <br> conversion)
+                    displayBioResult(generatedText.replace(/\n/g, '<br>'), "success");
+                } else {
+                    console.error('Unexpected API response structure:', result);
+                    throw new Error("Failed to generate bio. The API returned an unexpected response.");
+                }
+
+            } catch (error) {
+                console.error('Error generating bio:', error);
+                displayBioResult(`Error: ${error.message}. Please check the console for more details. If you are running this locally, ensure you have a valid API key.`, "error");
+            } finally {
+                // Hide loading state
+                bioLoadingElement.classList.add('hidden');
+                generateBioButton.disabled = false;
+            }
+        });
+
+        function displayBioResult(message, type = "success") {
+            bioResultElement.innerHTML = ''; // Clear previous messages
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message-box ${type === 'success' ? 'message-box-success' : 'message-box-error'}`;
+            
+            // If success, format with a title
+            if (type === 'success') {
+                const title = document.createElement('h4');
+                title.className = 'font-semibold text-lg mb-2 text-slate-100';
+                title.textContent = '✨ Your Generated Bio:';
+                messageDiv.appendChild(title);
+            }
+            
+            const contentP = document.createElement('p');
+            contentP.innerHTML = message; // Use innerHTML to render <br> tags
+            contentP.className = type === 'success' ? 'text-slate-300 leading-relaxed' : 'text-red-300';
+            messageDiv.appendChild(contentP);
+            
+            bioResultElement.appendChild(messageDiv);
+        }
+
+        // Fade-in/out scroll animation for sections
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove no-js class if JS is enabled
+            document.documentElement.classList.remove('no-js');
+            try {
+                const fadeSections = document.querySelectorAll('.fade-section');
+                const options = {
+                    threshold: [0, 0.2, 0.6, 1]
+                };
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.intersectionRatio > 0.2) {
+                            entry.target.classList.add('fade-in');
+                            entry.target.classList.remove('fade-out');
+                        } else if (entry.intersectionRatio <= 0.2 && entry.boundingClientRect.top < 0) {
+                            // Scrolling up, fade out upwards
+                            entry.target.classList.remove('fade-in');
+                            entry.target.classList.add('fade-out');
+                        } else {
+                            // Scrolling down, fade out downwards
+                            entry.target.classList.remove('fade-in');
+                            entry.target.classList.remove('fade-out');
+                        }
+                    });
+                }, options);
+                fadeSections.forEach(section => {
+                    observer.observe(section);
+                });
+            } catch (e) {
+                // If any error, show all sections
+                document.querySelectorAll('.fade-section').forEach(section => {
+                    section.classList.add('fade-in');
+                });
+                console.error('Fade scroll error:', e);
+            }
+        });
+
+        // Rotating subtitle animation
+        const rotatingPhrases = [
+            "Video content creator and editor",
+            "Helping Brands Grow Through Content",
+            "Creativity & Legal Expertise"
+        ];
+        const rotatingSubtitle = document.getElementById('rotating-subtitle');
+        let currentPhrase = 0;
+        function showRotatingPhrase(index) {
+            rotatingSubtitle.classList.remove('visible');
+            setTimeout(() => {
+                rotatingSubtitle.textContent = rotatingPhrases[index];
+                rotatingSubtitle.classList.add('visible');
+            }, 400); // fade out, then change
+        }
+        // Initial state
+        rotatingSubtitle.classList.add('rotating-fade');
+        showRotatingPhrase(currentPhrase);
+        setTimeout(() => rotatingSubtitle.classList.add('visible'), 50);
+        setInterval(() => {
+            rotatingSubtitle.classList.remove('visible');
+            setTimeout(() => {
+                currentPhrase = (currentPhrase + 1) % rotatingPhrases.length;
+                showRotatingPhrase(currentPhrase);
+            }, 700); // match transition duration
+        }, 3000);
+
+        // Parallax background effect
+        const parallaxBg = document.querySelector('.hero-parallax-bg');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            if (parallaxBg) {
+                parallaxBg.style.setProperty('--parallax-x', x);
+                parallaxBg.style.setProperty('--parallax-y', y);
+                parallaxBg.style.setProperty('--parallax-transform', `translate(${x*30}px,${y*30}px)`);
+                parallaxBg.style.setProperty('--parallax-transform2', `translate(${-x*20}px,${-y*20}px)`);
+                parallaxBg.style.setProperty('--parallax-transform3', `translate(${x*10}px,${y*10}px)`);
+                parallaxBg.style.setProperty('--parallax-transform4', `translate(${-x*10}px,${-y*10}px)`);
+                parallaxBg.style.setProperty('--parallax-rotate', `${x*8}deg`);
+                parallaxBg.style.setProperty('--parallax-rotate2', `${y*8}deg`);
+                parallaxBg.style.setProperty('--parallax-scale', `${1 + y*0.03}`);
+                parallaxBg.style.setProperty('--parallax-scale2', `${1 - x*0.03}`);
+                parallaxBg.style.setProperty('--parallax-opacity', `${0.35 + y*0.1}`);
+                // Animate the pseudo-elements
+                parallaxBg.style.setProperty('--before-transform', `translate(${x*40}px,${y*40}px)`);
+                parallaxBg.style.setProperty('--after-transform', `translate(${-x*30}px,${-y*30}px)`);
+                parallaxBg.style.setProperty('--before-opacity', `${0.35 + x*0.1}`);
+                parallaxBg.style.setProperty('--after-opacity', `${0.35 + y*0.1}`);
+                parallaxBg.style.setProperty('--before-scale', `${1 + x*0.05}`);
+                parallaxBg.style.setProperty('--after-scale', `${1 + y*0.05}`);
+                parallaxBg.style.setProperty('--before-rotate', `${x*10}deg`);
+                parallaxBg.style.setProperty('--after-rotate', `${y*10}deg`);
+                parallaxBg.style.setProperty('--before-bg', `linear-gradient(135deg, #8B7355 60%, #E8DCC4 100%)`);
+                parallaxBg.style.setProperty('--after-bg', `linear-gradient(135deg, #D4C4A8 60%, #6F5B3E 100%)`);
+                parallaxBg.style.setProperty('--before-blur', `blur(60px)`);
+                parallaxBg.style.setProperty('--after-blur', `blur(60px)`);
+            }
+        });
+        // Animate pseudo-elements via CSS variables
+        const style = document.createElement('style');
+        style.innerHTML = `
+        .hero-parallax-bg::before {
+            transform: var(--before-transform, none) scale(var(--before-scale,1)) rotate(var(--before-rotate,0deg));
+            opacity: var(--before-opacity,0.35);
+            background: var(--before-bg,linear-gradient(135deg, #8B7355 60%, #E8DCC4 100%));
+            filter: var(--before-blur,blur(60px));
+        }
+        .hero-parallax-bg::after {
+            transform: var(--after-transform, none) scale(var(--after-scale,1)) rotate(var(--after-rotate,0deg));
+            opacity: var(--after-opacity,0.35);
+            background: var(--after-bg,linear-gradient(135deg, #D4C4A8 60%, #6F5B3E 100%));
+            filter: var(--after-blur,blur(60px));
+        }
+        `;
+        document.head.appendChild(style);
+
+        // Floating particles in hero
+        function randomBetween(a, b) { return a + Math.random() * (b - a); }
+        const canvas = document.getElementById('heroParticles');
+        let particles = [];
+        function resizeParticlesCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        function createParticles() {
+            const w = canvas.width, h = canvas.height;
+            particles = [];
+            for (let i = 0; i < 24; i++) {
+                particles.push({
+                    x: randomBetween(0, w),
+                    y: randomBetween(0, h),
+                    r: randomBetween(8, 22),
+                    dx: randomBetween(-0.2, 0.2),
+                    dy: randomBetween(-0.1, 0.1),
+                    alpha: randomBetween(0.08, 0.18),
+                    color: [
+                        'rgba(232,220,196,',
+                        'rgba(139,115,85,',
+                        'rgba(212,196,168,',
+                        'rgba(111,91,62,',
+                        'rgba(245,245,244,'
+                    ][Math.floor(Math.random()*5)]
+                });
+            }
+        }
+        function drawParticles() {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+                ctx.fillStyle = p.color + p.alpha + ')';
+                ctx.shadowColor = p.color + (p.alpha * 2) + ')';
+                ctx.shadowBlur = 16;
+                ctx.fill();
+            }
+        }
+        function animateParticles() {
+            for (const p of particles) {
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < -30) p.x = canvas.width + 30;
+                if (p.x > canvas.width + 30) p.x = -30;
+                if (p.y < -30) p.y = canvas.height + 30;
+                if (p.y > canvas.height + 30) p.y = -30;
+            }
+            drawParticles();
+            requestAnimationFrame(animateParticles);
+        }
+        function setupParticles() {
+            resizeParticlesCanvas();
+            createParticles();
+            drawParticles();
+        }
+        window.addEventListener('resize', setupParticles);
+        setTimeout(() => {
+            setupParticles();
+            animateParticles();
+        }, 300);
+
+        // Magnetic button hover effect
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', function(e) {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width/2;
+                const y = e.clientY - rect.top - rect.height/2;
+                btn.style.transform = `translate(${x*0.12}px,${y*0.18}px) scale(1.04)`;
+            });
+            btn.addEventListener('mouseleave', function() {
+                btn.style.transform = '';
+            });
+        });
+
+        // AOS scroll-triggered animations
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                once: true,
+                duration: 900,
+                offset: 80,
+                easing: 'cubic-bezier(0.4,0,0.2,1)'
+            });
+        });
+        // Add data-aos attributes to sections/cards
+        document.querySelectorAll('.section').forEach((el, i) => {
+            el.setAttribute('data-aos', 'fade-up');
+            el.setAttribute('data-aos-delay', 80*i);
+        });
+        document.querySelectorAll('.card, .download-card').forEach((el, i) => {
+            el.setAttribute('data-aos', 'fade-up');
+            el.setAttribute('data-aos-delay', 120 + 40*i);
+        });
+
+        // Animated role flow under Welcome to Grace Insights
+        document.addEventListener('DOMContentLoaded', function() {
+            const roles = [
+                "Video Editor",
+                "Content Creator",
+                "Legal Expert",
+                "Content Writer"
+            ];
+            const animatedRole = document.getElementById('animatedRole');
+            let currentRole = 0;
+            function showRole(index) {
+                animatedRole.classList.remove('visible');
+                setTimeout(() => {
+                    animatedRole.textContent = roles[index];
+                    animatedRole.classList.add('visible');
+                }, 400);
+            }
+            // Initial state
+            if (animatedRole) {
+                showRole(currentRole);
+                setTimeout(() => animatedRole.classList.add('visible'), 50);
+                setInterval(() => {
+                    animatedRole.classList.remove('visible');
+                    setTimeout(() => {
+                        currentRole = (currentRole + 1) % roles.length;
+                        showRole(currentRole);
+                    }, 700);
+                }, 5000);
+            }
+        });
+
+    </script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- AOS Animate On Scroll Library -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+</body>
+</html>
